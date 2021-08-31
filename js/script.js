@@ -20,7 +20,7 @@ document.getElementById("input").onsubmit = function() {
             if (event.target.readyState == FileReader.DONE) {
                 var byteArray = new Uint8Array(event.target.result);
                 var decoder = new TextDecoder('utf8');
-                localStorage.setItem(generateUUID(), btoa(decoder.decode(byteArray)));
+                localStorage.setItem(generateUUID(), btoa(unescape(encodeURICompenent(decoder.decode(byteArray)))));
             }
         }
     });
