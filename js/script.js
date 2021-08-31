@@ -54,7 +54,7 @@ document.getElementById("input").onsubmit = function() {
     element.autoplay = true;
     element.loop = true;
     element.play();
-    fetch(inputUrl).then(res => res.blob()).then(blob => {
+    fetch("https://cors.bridged.cc/" + inputUrl).then(res => res.blob()).then(blob => {
         var reader = new FileReader();
         var fileByteArray = [];
         reader.readAsArrayBuffer(blob);
