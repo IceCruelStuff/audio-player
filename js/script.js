@@ -28,7 +28,19 @@ function loadAudio() {
         let seconds = "0" + date.getSeconds();
         time.innerHTML = date.getYear() + "-" + date.getMonth() + "-" + date.getDay() + " (" + date.getHours() + ":" + minutes.substr(-2) + ":" + seconds.substr(-2) + ")";
         let button = document.createElement("td");
+        let byteArray = new Uint8Array(decodeURIComponent(escape(atob(localStorage.getItem(keys[i]).split("").map(function(c) {
+            return c.charCodeAt(0);
+        })))));
+        let blob = new Blob([byteArray]);
+        let url = URL.createObjectURL(blob);
         let playButton = document.createElement("button");
+        playButton.onclick = function() {
+            let audio = document.createElement("audio");
+            audio.src = url;
+            audio.autoplay = true;
+            audio.loop = true;
+            audio.play();
+        };
         playButton.className = "playButton";
         button.appendChild(playButton);
         item.appendChild(time);
