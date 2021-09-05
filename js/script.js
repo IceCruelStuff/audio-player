@@ -29,7 +29,7 @@ function loadAudio() {
             let time = document.createElement("td");
             let minutes = "0" + date.getMinutes();
             let seconds = "0" + date.getSeconds();
-            time.innerHTML = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " (" + date.getHours() + ":" + minutes.substr(-2) + ":" + seconds.substr(-2) + ")";
+            time.innerHTML = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " (" + date.getHours() + ":" + minutes.substr(-2) + ":" + seconds.substr(-2) + ")";
             let button = document.createElement("td");
             let url = localStorage.getItem(keys[i]);
             let playButton = document.createElement("button");
