@@ -1,3 +1,5 @@
+const container = document.getElementById("container");
+
 function loadAudio() {
     if (document.getElementsByClassName("audio-history").length < 1) {
         var element = document.createElement("div");
@@ -48,6 +50,9 @@ function loadAudio() {
         body.appendChild(item);
         body.appendChild(document.createElement("br"));
     }
+    table.appendChild(body);
+    element.appendChild(table);
+    container.appendChild(element);
 }
 
 window.onload = function(event) {
