@@ -34,11 +34,12 @@ function loadAudio() {
             let url = localStorage.getItem(keys[i]);
             let playButton = document.createElement("button");
             playButton.onclick = function() {
-                var sounds = document.getElementsByTagName("audio");
+                var sounds = document.getElementsByName("sound");
                 for (var i = 0; i < sounds.length; i++) {
                     sounds[i].pause();
                 }
                 let audio = document.createElement("audio");
+                audio.className = "sound";
                 audio.src = url;
                 audio.autoplay = true;
                 audio.loop = true;
@@ -64,18 +65,20 @@ window.onload = function(event) {
 function handleForm(event) {
     event.preventDefault();
 }
-document.getElementById("input").addEventListener('submit', handleForm);
+// document.getElementById("input").addEventListener('submit', handleForm);
 
 document.getElementById("input").onsubmit = function() {
-    var sounds = document.getElementsByTagName("audio");
+    var sounds = document.getElementsByName("sound");
     for (var i = 0; i < sounds.length; i++) {
         sounds[i].pause();
     }
     var inputUrl = document.getElementById("url").value;
     var element = document.createElement("audio");
+    element.className = "sound";
     element.src = inputUrl;
     element.autoplay = true;
     element.loop = true;
     element.play();
     localStorage.setItem(Date.now(), inputUrl);
+    loadAudio();
 }
