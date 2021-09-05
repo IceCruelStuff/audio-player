@@ -28,13 +28,13 @@ function loadAudio() {
         let seconds = "0" + date.getSeconds();
         time.innerHTML = date.getYear() + "-" + date.getMonth() + "-" + date.getDay() + " (" + date.getHours() + ":" + minutes.substr(-2) + ":" + seconds.substr(-2) + ")";
         let button = document.createElement("td");
-        let byteArray = new Uint8Array(decodeURIComponent(escape(atob(localStorage.getItem(keys[i]).split("").map(function(c) {
-            return c.charCodeAt(0);
-        })))));
-        let blob = new Blob([byteArray]);
-        let url = URL.createObjectURL(blob);
+        let url = localStorage.getItem(keys[i]);
         let playButton = document.createElement("button");
         playButton.onclick = function() {
+            var sounds = document.getElementsByTagName("audio");
+            for (var i = 0; i < sounds.length; i++) {
+                sounds[i].pause();
+            }
             let audio = document.createElement("audio");
             audio.src = url;
             audio.autoplay = true;
@@ -60,23 +60,15 @@ function handleForm(event) {
 document.getElementById("input").addEventListener('submit', handleForm);
 
 document.getElementById("input").onsubmit = function() {
+    var sounds = document.getElementsByTagName("audio");
+    for (var i = 0; i < sounds.length; i++) {
+        sounds[i].pause();
+    }
     var inputUrl = document.getElementById("url").value;
     var element = document.createElement("audio");
     element.src = inputUrl;
     element.autoplay = true;
     element.loop = true;
     element.play();
-    fetch("https://cors.bridged.cc/" + inputUrl).then(res => res.blob()).then(blob => {
-        var reader = new FileReader();
-        var fileByteArray = [];
-        reader.readAsArrayBuffer(blob);
-        reader.onloadend = function(event) {
-            if (event.target.readyState == FileReader.DONE) {
-                var byteArray = new Uint8Array(event.target.result);
-                var decoder = new TextDecoder('utf8');
-                localStorage.setItem(Date.now(), btoa(unescape(encodeURIComponent(decoder.decode(byteArray)))));
-                loadAudio();
-            }
-        }
-    });
+    localStorage.setItem(Date.now(), inputUrl);
 }
