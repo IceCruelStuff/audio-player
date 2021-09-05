@@ -31,7 +31,7 @@ body {
     border-radius: 8px;
 }
 
-.container .links {
+.container .audio-history {
     transform: translate(-50%, -10%);
     width: auto;
     padding: 2.5rem;
@@ -41,7 +41,7 @@ body {
     border-radius: 8px;
 }
 
-.container .links .table {
+.container .audio-history .table {
     margin: 0 auto;
 }
 
