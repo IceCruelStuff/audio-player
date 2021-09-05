@@ -65,7 +65,7 @@ window.onload = function(event) {
 function handleForm(event) {
     event.preventDefault();
 }
-// document.getElementById("input").addEventListener('submit', handleForm);
+document.getElementById("input").addEventListener('submit', handleForm);
 
 document.getElementById("input").onsubmit = function() {
     var sounds = document.getElementsByName("sound");
