@@ -25,11 +25,11 @@ function loadAudio() {
         var body = document.createElement("tbody");
         for (let i = 0; i < keys.length; i++) {
             let item = document.createElement("tr");
-            let date = new Date(parseInt(keys[i]) * 1000);
+            let date = new Date(parseInt(keys[i]));
             let time = document.createElement("td");
             let minutes = "0" + date.getMinutes();
             let seconds = "0" + date.getSeconds();
-            time.innerHTML = date.getYear() + "-" + date.getMonth() + "-" + date.getDay() + " (" + date.getHours() + ":" + minutes.substr(-2) + ":" + seconds.substr(-2) + ")";
+            time.innerHTML = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " (" + date.getHours() + ":" + minutes.substr(-2) + ":" + seconds.substr(-2) + ")";
             let button = document.createElement("td");
             let url = localStorage.getItem(keys[i]);
             let playButton = document.createElement("button");
